@@ -1,0 +1,45 @@
+{
+		"relatedLocations":[
+		{
+			"property":"PartName",
+			"to":"Input/B16"
+		},{
+			"property":"DWGVersion",
+			"to":"Input/D16"
+		},{
+			"property":"Version",
+			"to":"Input/D18"
+		},{
+			"property":"ObjectSN",
+			"to":"Input/B17"
+		},{
+			"property":"CustomerDwgSn",
+			"to":"Input/B18"
+		},{
+			"property":"CustomVersion",
+			"to":"Input/D17"
+		},{
+			"property":"Version",
+			"to":"Input/D18"
+		},		{
+			"property":"Material",
+			"to":"Input/B22"
+		},{
+			"property":"ProjectName",
+			"to":"Input/D20"
+		},{
+			"property":"CA",
+			"to":"Input/D28/D29"
+		},{
+			"property":"diameter",
+			"to":"Input/C31/D31"
+		},{
+			"property":"R",
+			"to":"Input/B38/B39"
+		},{
+			"property":"centerThick",
+			"to":"Input/G50/G51"
+		}
+
+]
+}

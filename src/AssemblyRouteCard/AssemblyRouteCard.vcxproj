@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;xlsx</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -64,6 +64,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../CADControl/;$(SolutionDir)src\extlib\json4moderncpp;../SystemConfig</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;SYSTEMCONFIG_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -93,6 +99,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="outputCSV.cpp" />
+    <ClCompile Include="RouteCardControlModel.cpp" />
     <QtRcc Include="AssemblyRouteCard.qrc" />
     <QtUic Include="AssemblyRouteCard.ui" />
     <QtMoc Include="AssemblyRouteCard.h" />
@@ -103,6 +111,16 @@
     <ProjectReference Include="..\CADControl\CADControl.vcxproj">
       <Project>{a0b9badd-ed8b-4c33-a1eb-a070d378b169}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\SystemConfig\SystemConfig.vcxproj">
+      <Project>{4e3f60cc-18b4-4c6a-816d-7ef5eff0711b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="outputCSV.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Result.h" />
+    <ClInclude Include="RouteCardControlModel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

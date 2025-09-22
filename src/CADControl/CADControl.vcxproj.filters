@@ -27,6 +27,12 @@
     <ClInclude Include="DWGControl.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CADControl_global.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FormatHandle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -39,6 +45,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DWGControl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FormatHandle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
