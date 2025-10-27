@@ -16,6 +16,6 @@ private:
 	~SystemConfigModel() {};
 	static SystemConfigModel* self;
 	string XLSXLocFile = "..\\config\\CADToXlsx.json";
-	string CADLocFile = "D:\\mlo\\code\\AssemblyRouteCard\\src\\config\\relativeInfoPosInViewport.json";
+	string CADLocFile = "..\\config\\relativeInfoPosInViewport.json";
 };
 #endif

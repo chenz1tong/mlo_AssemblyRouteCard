@@ -15,30 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="DwgReader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CADController.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="DWGControl.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CADControl_global.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="FormatHandle.h">
+    <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Bridge.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DWGControl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FormatHandle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="DwgReader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CADController.cpp">
+    <ClCompile Include="Bridge.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DWGControl.cpp">
@@ -47,8 +44,15 @@
     <ClCompile Include="FormatHandle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Bridge.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>

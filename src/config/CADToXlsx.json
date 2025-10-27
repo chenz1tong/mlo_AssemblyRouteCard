@@ -4,7 +4,7 @@
 			"property":"PartName",
 			"to":"Input/B16"
 		},{
-			"property":"DWGVersion",
+			"property":"DwgVersion",
 			"to":"Input/D16"
 		},{
 			"property":"Version",

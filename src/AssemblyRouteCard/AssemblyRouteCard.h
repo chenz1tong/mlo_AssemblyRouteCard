@@ -9,6 +9,8 @@ class AssemblyRouteCard : public QWidget
 public:
     AssemblyRouteCard(QWidget *parent = nullptr);
     ~AssemblyRouteCard();
+private:
+    void initUi();
 public slots:
 
     void on_loadScript_clicked();
@@ -20,5 +22,6 @@ public slots:
 private:
     Ui::AssemblyRouteCardClass ui;
     std::string m_log;
+    std::string pythonScriptPath="";
 };
 

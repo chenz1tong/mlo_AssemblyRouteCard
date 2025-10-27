@@ -27,8 +27,11 @@ void RouteCardControlModel::writeTo(QString path, std::map<string, string> res)
 std::map<string, string> RouteCardControlModel::getCADposValue(std::map<string, string> posRelation, std::map<string, string> ValRelation)
 {
 	std::map<string, string> relation;
-	for (auto val = ValRelation.begin(); val != ValRelation.end();val++) {
-		relation.insert(std::make_pair(posRelation[val->first], val->second));
+	for (auto val = posRelation.begin(); val != posRelation.end();val++) {
+		if (ValRelation.find(val->first) != ValRelation.end())
+			relation.insert(std::make_pair(posRelation[val->first], ValRelation[val->first]));
+		else
+			relation.insert(std::make_pair(posRelation[val->first], ""));
 	}
 	return relation;
 }

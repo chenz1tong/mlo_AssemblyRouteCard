@@ -5,7 +5,7 @@
 #include "DWGControl.h"
 #include <map>
 using namespace std;
-class CADCONTROL_EXPORT CADController
+class __declspec(dllexport) CADController
 {
 public:
 	static CADController* getInstance();

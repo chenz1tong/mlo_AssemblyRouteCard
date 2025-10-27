@@ -105,7 +105,6 @@
 //    outXlsx.deleteLater();
 //    return Result();
 //}
-
 Result outputCSV::writeToXlsx(const QString& filePath, std::map<string, string>  cellsItems) {
     
     QXlsx::Document xlsx(filePath);
@@ -115,21 +114,38 @@ Result outputCSV::writeToXlsx(const QString& filePath, std::map<string, string> 
 
         return Result(false, "Failed to load the file.");
     }
+    //std::vector<string> keys;
     for (auto item = cellsItems.begin(); item != cellsItems.end(); item++) {
         string loc=item->first;
         std::vector<string> list = getSplitStrings("/", loc);
-
+        //keys.push_back(loc);
         string sheetName = list.at(0);
         bool res = xlsx.selectSheet(QString::fromStdString(sheetName)); 
-        std::vector<string> vals = getSplitStrings(",", item->second.c_str());
-
         QXlsx::Worksheet* sheet =  xlsx.currentWorksheet();
-        for (int index = 1; index < list.size(); index++) {
-            string cellName = list.at(index);
-            int col = getColNum(cellName);
-            int row = stoi(cellName.substr(1));
-            sheet->write( row,col, QString::fromLocal8Bit(vals.at(index-1).c_str()));
+        if (item->second == "") {
+            for (int index = 1; index < list.size(); index++) {
+                string cellName = list.at(index);
+                int col = getColNum(cellName);
+                int row = stoi(cellName.substr(1));
+                sheet->write(row, col, "");
+
+            }/*
+            xlsx.saveAs(filePath);
+            xlsx.deleteLater();
+            return Result();*/
         }
+        else {
+            std::vector<string> vals = getSplitStrings(",", item->second.c_str());
+
+            for (int index = 1; index < list.size(); index++) {
+                string cellName = list.at(index);
+                int col = getColNum(cellName);
+                int row = stoi(cellName.substr(1));
+                sheet->write( row,col, QString::fromLocal8Bit(vals.at(index-1).c_str()));
+            }
+        }
+
+
 
     }
 
@@ -153,17 +169,6 @@ std::vector<string> outputCSV::getSplitStrings(const char* c,string loc) {
     list.push_back(loc.substr(pos));
     return list;
 }
-//Result outputCSV::getFileName(const QString& filePath,QString& fileName)
-//{
-//    QDateTime dateTime = QDateTime::currentDateTime();
-//    QString dateStr = dateTime.toString("yyyyMMdd");
-//    QString newPath = filePath + "\\" + dateStr +"_" + "_TestResult";
-//    if (!judegeFolderName(newPath)) {
-//        return Result(false, "The output filepath format false!");
-//    }
-//    fileName = newPath +"\\MTFResult.xlsx";
-//    return Result();
-//}
 
 int outputCSV::getColNum(string algh)
 {

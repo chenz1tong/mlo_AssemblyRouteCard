@@ -20,7 +20,7 @@ bool DWGControl::loadDWG(const char* fileName)
 	//	//std::cerr << "Error reading DWG file: " << filename << std::endl;
 	//	return false;
 	//}
-	Bridge::getInstance()->loadDWG(fileName);
+	return Bridge::getInstance()->loadDWG(fileName);
 	//DWGBridge::simpleRead(string(fileName));
 	//Dwg_Object_Ref* refs = dwg_model_space_ref(&dwg);
 	////Dwg_Entity_MTEXT** texts = dwg_getall_MTEXT(refs);
@@ -48,7 +48,7 @@ bool DWGControl::loadDWG(const char* fileName)
 	//	//		const char* textContent = mtext->default_text;
 	//	//}
 	//}
-	return true;
+	//return true;
 }
 std::string DWGControl::ConvertToUTF8(const std::string& input, UINT codepage) {
 	int requiredSize = MultiByteToWideChar(codepage, 0, input.c_str(), -1, nullptr, 0);
@@ -117,46 +117,46 @@ std::string DWGControl::GB2312ToUTF8(const char* gb2312Str) {
 
 	return utf8Result;
 }
-Dwg_Entity_VIEWPORT** DWGControl::getViewPort()
-{
-	Dwg_Entity_VIEWPORT** ports = dwg_getall_VIEWPORT(dwg_model_space_ref(&dwg));
-
-	if (ports) {
-		//for (BITCODE_BL j = 0; j < ports[0]->num_frozen_layers; j++) {
-		//	Dwg_Object* viewport_entity = viewport->entities[j];
-		//	print_text_entity(viewport_entity);
-		//}
-		return ports;
-	}
-	Dwg_Entity_TEXT** ts= dwg_getall_TEXT(dwg_model_space_ref(&dwg));
-   return nullptr;
-}
-Dwg_Entity_MTEXT** DWGControl::getAllText()
-{
-	Dwg_Object_Ref* refs = dwg_model_space_ref(&dwg);
-	Dwg_Entity_MTEXT** texts = dwg_getall_MTEXT(refs);
-	if (texts) {
-		return texts;
-	}
-	return nullptr;
-}
-Dwg_Entity_DIMENSION_LINEAR** DWGControl::getAllLNDimension() {
-	Dwg_Object_Ref* refs = dwg_model_space_ref(&dwg);
-
-	Dwg_Entity_DIMENSION_LINEAR**  dimension= dwg_getall_DIMENSION_LINEAR(refs);
-	if (dimension) {
-		return dimension;
-	}
-	return nullptr;
-}
-Dwg_Entity_DIMENSION_RADIUS** DWGControl::getAllRadiusDimension() {
-	Dwg_Object_Ref* refs = dwg_model_space_ref(&dwg);
-	Dwg_Entity_DIMENSION_RADIUS** dimension = dwg_getall_DIMENSION_RADIUS(refs);
-	if (dimension) {
-		return dimension;
-	}
-	return nullptr;
-}
+//Dwg_Entity_VIEWPORT** DWGControl::getViewPort()
+//{
+//	Dwg_Entity_VIEWPORT** ports = dwg_getall_VIEWPORT(dwg_model_space_ref(&dwg));
+//
+//	if (ports) {
+//		//for (BITCODE_BL j = 0; j < ports[0]->num_frozen_layers; j++) {
+//		//	Dwg_Object* viewport_entity = viewport->entities[j];
+//		//	print_text_entity(viewport_entity);
+//		//}
+//		return ports;
+//	}
+//	Dwg_Entity_TEXT** ts= dwg_getall_TEXT(dwg_model_space_ref(&dwg));
+//   return nullptr;
+//}
+//Dwg_Entity_MTEXT** DWGControl::getAllText()
+//{
+//	Dwg_Object_Ref* refs = dwg_model_space_ref(&dwg);
+//	Dwg_Entity_MTEXT** texts = dwg_getall_MTEXT(refs);
+//	if (texts) {
+//		return texts;
+//	}
+//	return nullptr;
+//}
+//Dwg_Entity_DIMENSION_LINEAR** DWGControl::getAllLNDimension() {
+//	Dwg_Object_Ref* refs = dwg_model_space_ref(&dwg);
+//
+//	Dwg_Entity_DIMENSION_LINEAR**  dimension= dwg_getall_DIMENSION_LINEAR(refs);
+//	if (dimension) {
+//		return dimension;
+//	}
+//	return nullptr;
+//}
+//Dwg_Entity_DIMENSION_RADIUS** DWGControl::getAllRadiusDimension() {
+//	Dwg_Object_Ref* refs = dwg_model_space_ref(&dwg);
+//	Dwg_Entity_DIMENSION_RADIUS** dimension = dwg_getall_DIMENSION_RADIUS(refs);
+//	if (dimension) {
+//		return dimension;
+//	}
+//	return nullptr;
+//}
  DWGControl* DWGControl::getInstance()
 {
 	//mutex.lock();
@@ -165,6 +165,18 @@ Dwg_Entity_DIMENSION_RADIUS** DWGControl::getAllRadiusDimension() {
 	//mutex.unlock();
 	return self;
 }
+ std::map<string, string> DWGControl::getCSharpMap()
+ {
+	 std::map<string, string> re= Bridge::getInstance()->getAll();
+	 std::map<string, string>::iterator it;
+	 for (it = re.begin(); it != re.end(); it++) {
+		 FormatHandle::OutputToDebugWindow(it->first);
+		 FormatHandle::OutputToDebugWindow("\n");
+		 FormatHandle::OutputToDebugWindow(it->second);
+
+	 }
+	 return re;
+ }
 //BITCODE_3BD DWGControl::getPartNamePos() {
 //	BITCODE_3BD portsPos = getViewPort()[0]->center;
 //

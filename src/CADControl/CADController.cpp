@@ -3,16 +3,17 @@
 #include <dwg_api.h>
 #include <dwg.h>
 CADController* CADController::instance = nullptr;
+#pragma managed(push, off)
 CADController* CADController::getInstance()
 {
-	std::mutex mutex;
-	mutex.lock();
+	//std::mutex mutex;
+	//mutex.lock();
 	if (instance == nullptr)
 		instance = new CADController();
-		mutex.unlock();
+		//mutex.unlock();
 		return instance;
 }
-
+#pragma managed(pop)
 string CADController::getPartName()
 {
 	return m_partName;
@@ -88,8 +89,8 @@ bool CADController::getView()
 }
 bool CADController::initRead(const char* fileName)
 {
-
-	return DWGControl::getInstance()->loadDWG(fileName);
+	bool u=DWGControl::getInstance()->loadDWG(fileName);
+	return true;
 }
 void CADController::initData()
 {
